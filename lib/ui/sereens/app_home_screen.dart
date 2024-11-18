@@ -1,3 +1,6 @@
+import 'package:fast_foods_app/ui/utils/app_colors.dart';
+import 'package:fast_foods_app/ui/widgets/burger_card.dart'; // Ensure the import path is correct
+import 'package:fast_foods_app/ui/widgets/pizza_card.dart';
 import 'package:flutter/material.dart';
 import '../widgets/custom_app_bar.dart';
 
@@ -8,19 +11,21 @@ class AppHomeScreen extends StatefulWidget {
   State<AppHomeScreen> createState() => _AppHomeScreenState();
 }
 
-class _AppHomeScreenState extends State<AppHomeScreen> with SingleTickerProviderStateMixin {
+class _AppHomeScreenState extends State<AppHomeScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabFoodController;
   final TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _tabFoodController = TabController(length: 2, vsync: this); // Use 'this' for vsync
+    _tabFoodController =
+        TabController(length: 2, vsync: this); // Corrected 'vsync' usage
   }
 
   @override
   void dispose() {
-    _tabFoodController.dispose(); // Dispose the controller when done
+    _tabFoodController.dispose(); // Dispose of the controller when done
     super.dispose();
   }
 
@@ -70,44 +75,65 @@ class _AppHomeScreenState extends State<AppHomeScreen> with SingleTickerProvider
                 _performSearch(value);
               },
             ),
+            const SizedBox(height: 20),
+            const Text('Find',
+            style: TextStyle(fontSize: 20,
+            fontWeight: FontWeight.bold),),
+            const SizedBox(height: 10),
             TabBar(
+              labelColor: AppColors.themeColor,
+              indicatorColor: AppColors.themeColor,
+              unselectedLabelColor: AppColors.themeColor,          
               controller: _tabFoodController,
               tabs: const [
-                Tab(
-                  child: Text(
-                    'Burger',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                Card(
+                  child: Tab(
+                    child: Row(
+                              
+                      children: [
+                        Icon(Icons.emoji_food_beverage_outlined),
+                        SizedBox(width: 10,),
+                        Text(
+                          'Burger',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                Tab(
-                  child: Text(
-                    'Pizza',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                Card(
+                  child: Tab(
+                    child: Row(
+                      children: [
+                        Icon(Icons.food_bank_sharp),
+                        SizedBox(width: 10,),
+                        Text(
+                          'Pizza',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ],
             ),
-            TabBarView(
-              controller: _tabFoodController,
-              children: const [
-                SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.all(12),
-                    child: Column(
-                      children: [
-
-                      ],
-                    ),),
-                )
-              ])
+            Expanded(
+              child: TabBarView(
+                controller: _tabFoodController,
+                children: const [
+                  burger_curd(), // Ensure `BurgerCard` is defined correctly in your project
+                  pizza_card() // Placeholder for pizza tab
+                ],
+              ),
+            ),
           ],
         ),
       ),
