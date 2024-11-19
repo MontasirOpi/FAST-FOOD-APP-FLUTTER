@@ -20,51 +20,94 @@ class _SignInSignUpScreenState extends State<SignInSignUpScreen>
   }
 
   @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Auth Screen'),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: const [
-            Tab(
-              child: Text(
-                'Login',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black, // Change this color as needed
-                ),
-              ),
-            ),
-            Tab(
-              child: Text(
-                'Signup',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black, // Change this color as needed
-                ),
-              ),
-            ),
-          ],
-          labelColor: AppColors.themeColor,
-          indicatorColor: AppColors.themeColor,
-          unselectedLabelColor: AppColors.themeColor,
-          indicatorWeight: 4.0,
-        ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
+      body: Column(
         children: [
-          _buildLoginForm(),
-          _buildSignUpForm(),
+          Card(
+            
+            child: Column(
+              
+              children: [
+                // Custom "AppBar" within the body
+                Container(
+                  color: Colors.grey.shade200,
+                  padding: const EdgeInsets.only(
+                      top: 40.0, left: 16.0, right: 16.0, bottom: 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Center(
+                        child: Text(
+                          'Welcome',
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10),
+                        child: TabBar(
+                          controller: _tabController,
+                          tabs: const [
+                            Tab(
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            Tab(
+                              child: Text(
+                                'Signup',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ],
+                          labelColor: Colors.red, // Customize with your color
+                          indicatorColor:
+                              Colors.red, // Customize with your color
+                          //unselectedLabelColor: Colors.grey,
+                          //indicatorWeight: 4.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // TabBarView for content
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                _buildLoginForm(context), // Pass context if needed
+                _buildSignUpForm(context), // Pass context if needed
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildLoginForm() {
+  Widget _buildLoginForm(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -85,17 +128,17 @@ class _SignInSignUpScreenState extends State<SignInSignUpScreen>
                 labelText: 'Password',
                 prefixIcon: Icon(Icons.lock),
                 suffixIcon: Icon(Icons.visibility),
-                border: const OutlineInputBorder(),
+                border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 16),
             Align(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.centerLeft,
               child: TextButton(
                 onPressed: () {
                   // Handle forgot password action
                 },
-                child: const Text('Forgot password?'),
+                child: const Text('Forgot password?',style: TextStyle(color: Colors.black),),
               ),
             ),
             const SizedBox(height: 16),
@@ -107,7 +150,6 @@ class _SignInSignUpScreenState extends State<SignInSignUpScreen>
                     builder: (context) => const AppHomeScreen(),
                   ),
                 );
-                // Handle login action
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 48),
@@ -121,7 +163,7 @@ class _SignInSignUpScreenState extends State<SignInSignUpScreen>
     );
   }
 
-  Widget _buildSignUpForm() {
+  Widget _buildSignUpForm(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -169,11 +211,5 @@ class _SignInSignUpScreenState extends State<SignInSignUpScreen>
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
   }
 }
