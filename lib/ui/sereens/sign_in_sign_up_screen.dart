@@ -37,6 +37,7 @@ class _SignInSignUpScreenState extends State<SignInSignUpScreen>
               children: [
                 // Custom "AppBar" within the body
                 Container(
+                  
                   color: Colors.grey.shade200,
                   padding: const EdgeInsets.only(
                       top: 40.0, left: 16.0, right: 16.0, bottom: 0),
@@ -52,7 +53,9 @@ class _SignInSignUpScreenState extends State<SignInSignUpScreen>
                           ),
                         ),
                       ),
+                      SizedBox(height: 20,),
                       Padding(
+                        
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10),
                         child: TabBar(
@@ -92,11 +95,15 @@ class _SignInSignUpScreenState extends State<SignInSignUpScreen>
               ],
             ),
           ),
+          const SizedBox(height: 40,),
           // TabBarView for content
           Expanded(
+            
             child: TabBarView(
+              
               controller: _tabController,
               children: [
+                
                 _buildLoginForm(context), // Pass context if needed
                 _buildSignUpForm(context), // Pass context if needed
               ],

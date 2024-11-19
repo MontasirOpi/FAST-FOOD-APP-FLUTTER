@@ -29,13 +29,15 @@ class _SpalashScreenState extends State<SpalashScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body:SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(AssetsPath.backgroundJpg),
-            ],
+      body:Center(
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(AssetsPath.backgroundJpg),
+              ],
+            ),
           ),
         ),
       ) ,

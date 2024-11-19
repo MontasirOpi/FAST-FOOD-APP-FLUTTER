@@ -1,3 +1,4 @@
+import 'package:fast_foods_app/ui/sereens/cart_screen.dart';
 import 'package:fast_foods_app/ui/sereens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -35,6 +36,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 print('Settings selected');
                 break;
               case 2:
+               Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CartScreen(),
+                  ),
+                );
                 print('Logout selected');
                 break;
             }

@@ -64,11 +64,11 @@ class _AppHomeScreenState extends State<AppHomeScreen>
                 hintText: 'Search your food',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                  borderSide: BorderSide(color: Colors.black),
+                  borderRadius: BorderRadius.all(Radius.circular(9)),
+                  borderSide: BorderSide(color: Colors.red),
                 ),
-                filled: true,
-                fillColor: Color.fromARGB(255, 201, 198, 198),
+              
+                fillColor: Color.fromARGB(255, 250, 241, 241),
               ),
               onSubmitted: (value) {
                 // Action to perform when the user submits the search query
@@ -128,9 +128,9 @@ class _AppHomeScreenState extends State<AppHomeScreen>
             Expanded(
               child: TabBarView(
                 controller: _tabFoodController,
-                children: const [
-                  burger_curd(), // Ensure `BurgerCard` is defined correctly in your project
-                  pizza_card() // Placeholder for pizza tab
+                children:  [
+                  BurgerCard(), // Ensure `BurgerCard` is defined correctly in your project
+                  PizzaCard() // Placeholder for pizza tab
                 ],
               ),
             ),
