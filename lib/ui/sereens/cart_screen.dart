@@ -1,3 +1,4 @@
+import 'package:fast_foods_app/ui/sereens/checkout_screen.dart';
 import 'package:fast_foods_app/ui/widgets/price_widget_in_card.dart';
 import 'package:fast_foods_app/ui/widgets/promo_apply_cart.dart';
 import 'package:flutter/material.dart';
@@ -117,7 +118,9 @@ class _CartScreenState extends State<CartScreen> {
                 ),
                 const priceWidgetIncart(),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> CheckoutScreen()));
+                  },
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.red,
                     padding:
